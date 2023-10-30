@@ -8,9 +8,9 @@ mongoose.connect("mongodb://0.0.0.0:27017/user-management", {
 });
 
 module.exports = {
-  //
+  
   // Register an admin account (POST /register)
-  //
+  
   register: async (req, res) => {
     const { name, email, username, password } = req.body;
     await Admin.create({
@@ -21,9 +21,9 @@ module.exports = {
     });
     res.json({ message: "Admin registered successfully" });
   },
-  //
+  
   // Admin Login (POST /login)
-  //
+  
   login: async (req, res) => {
     const { username, password } = req.body;
 
@@ -37,9 +37,9 @@ module.exports = {
     );
     res.json({ message: "Login successful", token });
   },
-  //
+  
   // Create a user with name, email, username, and photo (POST /users)
-  //
+  
   createuser: async (req, res) => {
     const { name, email, username } = req.body;
     const photo = req.file ? req.file.filename : "";
@@ -62,9 +62,9 @@ module.exports = {
       data: allusers,
     });
   },
-  //
+  
   // Get a specific user based on the id provided (GET /users/:id)
-  //
+  
   getuserByid: async (req, res) => {
     const userId = req.params.id;
     const user = await User.findById(userId);
@@ -77,9 +77,9 @@ module.exports = {
       data: user,
     });
   },
-  //
+  
   // Update a specific user (PUT /users/:id)
-  //
+  
   updateuserByid: async (req, res) => {
     const userId = req.params.id;
     const { name, email, username } = req.body;
@@ -91,9 +91,9 @@ module.exports = {
     }
     res.json({ message: "User updated successfully" });
   },
-  //
+  
   // Delete a specific user (DELETE /users/:id)
-  //
+  
   deleteuserByid: async (req, res) => {
     const userId = req.params.id;
     const user = await User.findByIdAndRemove(userId);
